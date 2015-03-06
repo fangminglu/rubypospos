@@ -84,23 +84,24 @@ for news in $newInput
 end
 #puts $newInput
 for newput in $newInput
-  #for itemss in  $newItem
-  if newput[:count].to_i >2#&& newput[:barcode]=itemss[:barcode]
+
+  if newput[:count].to_i >2
     $total =newput[:count] * newput[:price] - newput[:count]/3*newput[:price]
   end
   if newput[:count].to_i <=2
     $total =newput[:count] * newput[:price]
   end
   puts '名称:'+newput[:name].to_s+' 数量:'+newput[:count].to_s+newput[:unit].to_s+' 单价:'+newput[:price].to_s+' 小计:'+$total.to_s
-  #end
   end
 puts '----------------------'
 puts '挥泪赠送商品:'
-for newn in $newInput
-  if newn[:count].to_i >2
+  for newn in $newInput
+    for itemss in  $newItem
+      if newn[:count].to_i >2 && newn[:barcode]==itemss
     numbers =newn[:count]/3
     puts '名称:'+newn[:name].to_s+' 数量:'+numbers.to_s+newn[:unit].to_s
-  end
+      end
+    end
 end
 puts'---------------------'
-puts
+
