@@ -1,7 +1,7 @@
 $newInput = []
-#$outPut = []
+$save_money=0
 $total
-$maxtotal
+$maxtotal=0
 $inputs = [
     'ITEM000001',
     'ITEM000001',
@@ -91,6 +91,7 @@ for newput in $newInput
   if newput[:count].to_i <=2
     $total =newput[:count] * newput[:price]
   end
+  $maxtotal +=$total
   puts '名称:'+newput[:name].to_s+' 数量:'+newput[:count].to_s+newput[:unit].to_s+' 单价:'+newput[:price].to_s+' 小计:'+$total.to_s
   end
 puts '----------------------'
@@ -100,8 +101,10 @@ puts '挥泪赠送商品:'
       if newn[:count].to_i >2 && newn[:barcode]==itemss
     numbers =newn[:count]/3
     puts '名称:'+newn[:name].to_s+' 数量:'+numbers.to_s+newn[:unit].to_s
+        $save_money +=numbers*newn[:price]
       end
     end
 end
 puts'---------------------'
-
+puts '总计:'+$maxtotal.to_s+'元'
+puts '节省:'+$save_money.to_s+'元'
